@@ -40,3 +40,16 @@ while (energy >= MIN_ENERGY) {
 }
 
 console.log('Программа завершена. Робот отдыхает.')
+
+let number = 100
+while (number > 49) {
+    console.log(number)
+    number--
+}
+
+let energy2 = 5
+let name = "Robo"
+
+let message = `${name} имеет ${energy2} единиц энергии`
+
+console.log(message);
