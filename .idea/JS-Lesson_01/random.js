@@ -10,7 +10,7 @@ for (let i = 0; i < 100; i++) {
 // console.log(arr);
 
 function rollDice() {
-    return Math.floor(Math.random() * 6) + 1;
+    return Math.floor(Math.random() * 10) + 6;
 }
 
 console.log(`Rol dice 1 to 6: ${rollDice()}`);
