@@ -15,3 +15,9 @@ let thisIsaFunc = function () {
 }
 
 thisIsaFunc();
+
+
+const array = new Uint32Array(1);
+crypto.getRandomValues(array);
+const randomNumber = (array[0] % 6) + 1;
+console.log(`Random : ${randomNumber}`);
