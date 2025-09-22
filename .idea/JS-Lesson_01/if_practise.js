@@ -1,3 +1,4 @@
+/*
 
 
 function randomAge() {
@@ -7,4 +8,19 @@ function randomAge() {
 for (let i = 0; i < 10; i++) {
     let a = randomAge();
     console.log(`${a} : ${a >= 18 ? true : false}`);
+}*/
+
+let batteryLevel = 'нет заряда'
+let action
+switch (batteryLevel) {
+    case 'нет заряда':
+        action = 1
+    case 'низкий':
+        action = 2
+        break;
+    case 'полный':
+        action = 3
+        break;
 }
+
+console.log(action);
