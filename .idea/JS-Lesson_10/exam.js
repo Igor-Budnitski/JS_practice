@@ -25,8 +25,6 @@ const sortedUsers = users.sort((a, b) => b - a)
 
 console.log("Люди, отсортированные по возрасту:", sortedUsers)*/
 
-function double(x) => x * 2;
-
 /*
 const movies = [
     { title: "Назад в будущее", rating: 8.5 },
