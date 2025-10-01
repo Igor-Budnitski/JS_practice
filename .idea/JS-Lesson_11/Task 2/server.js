@@ -28,15 +28,21 @@ const server = http.createServer((request, response) => {
         console.log(reqUrl);
         const pathName = reqUrl.pathname;
 
+        console.log(counter);
+
         if (request.method === 'GET') {
+            counter.totalRequests++;
             if (request.url === '/hello') {
+                counter.routes["/hello"]++;
                 response.end(`Hello from my server, my dear friend!\nIgor Budnitski`);
             } else if (request.url === '/time') {
                 const time = new Date().toLocaleTimeString([], {hour12: false, hour: "2-digit", minute: "2-digit"});
                 response.end(`Current time: ${time}`);
             } else if (request.url === '/about') {
+                counter.routes["/about"]++;
                 response.end('Hello. My name is Igor, I like bacon.');
             } else if (request.url === '/users') {
+                counter.routes["/users"]++;
                 response.end(JSON.stringify(users));
             } else if (pathName.startsWith("/users/")) {
                 const parts = pathName.split('/');
