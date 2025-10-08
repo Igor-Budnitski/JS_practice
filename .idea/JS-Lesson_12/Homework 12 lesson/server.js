@@ -1,17 +1,22 @@
 const http = require('http');
 const fs = require('fs');
+const path = require("node:path");
 
-const delay = (ms) => {
+const delay = (ms, path) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            resolve()
+            fs.readFile(path, (err,data) => {
+                if(err) reject(err)
+                else resolve(data)
+            })
         }, ms)
     })
 }
-const readFile = (path) => {
+const readFilePromise = (path) => {
     return new Promise((resolve, reject) => {
         fs.readFile(path, (err, data) => {
-            if (err) reject('Rejected Error', err)
+            // if (err) reject(`500 error path ${path} not found`, err)
+            if (err) reject(err)
             else resolve(data);
         });
     })
@@ -19,15 +24,25 @@ const readFile = (path) => {
 
 const server = http.createServer(async (req, res) => {
     if (req.url === '/home') {
-        const data = await readFile('pages/home.html');
-        res.write(data);
-        res.end();
+        try {
+            const data = await readFilePromise('pages/home.html');
+            res.write(data);
+            res.end();
+        } catch (err) {
+            res.write(`500 ERROR, \nPath Home doesn't exists`);
+            res.end();
+        }
     }
 
     if (req.url === '/about') {
-        await delay(5000);
-        res.write("ABOUT COURSE PROMISE!");
-        res.end();
+        try{
+            const data = await delay(3000, 'pages/about.html');
+            res.write(data);
+            res.end();
+        } catch (err) {
+            res.write(`500 ERROR, \nPath About doesn't exists`);
+            res.end();
+        }
     }
 })
 
